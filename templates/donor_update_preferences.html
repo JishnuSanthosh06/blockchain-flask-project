@@ -1,0 +1,53 @@
+{% include 'donor_header.html' %}
+<br><br><br><br><br><br><br>
+
+<center>
+    <h2>View organ Request by users an Hospital</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; padding: 20px; background: #eef2f7; font-family: 'Poppins', sans-serif;">
+        {% for i in data['ho'] %}
+        <div style="background: rgba(255, 255, 255, 0.3); padding: 20px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px); position: relative; transition: transform 0.3s ease;">
+            <h3 style="color: #007bff; margin-bottom: 10px;"><i class="fas fa-file-alt"></i> {{ i['title'] }}</h3>
+            <p style="margin: 5px 0;"><i class="fas fa-id-card"></i> <strong>Post ID:</strong> {{ i['post_id'] }}</p>
+            <p style="margin: 5px 0;"><i class="fas fa-user"></i> <strong>Sender ID:</strong> {{ i['sender_id'] }}</p>
+            <p style="margin: 5px 0;"><i class="fas fa-user-friends"></i> <strong>Receiver ID:</strong> {{ i['receiever_id'] }}</p>
+            <p style="margin: 5px 0;"><i class="fas fa-heartbeat"></i> <strong>Organ:</strong> {{ i['organ_name'] }}</p>
+            <p style="margin: 5px 0;"><i class="fas fa-calendar-alt"></i> <strong>Operation Date:</strong> {{ i['operation_date'] }}</p>
+            <p style="margin: 5px 0;"><i class="fas fa-clock"></i> <strong>Date:</strong> {{ i['date'] }}</p>
+            <p style="margin: 5px 0;"><i class="fas fa-info-circle"></i> <strong>Description:</strong> {{ i['description'] }}</p>
+    
+            {% set status_color = 'orange' if i['status'] == 'Pending' else 'green' if i['status'] == 'Accepted' else 'red' %}
+            <p style="margin: 10px 0; font-size: 16px; font-weight: bold;">
+                <i class="fas fa-flag"></i> <strong>Status: </strong>
+                <span style="color: {{ status_color }};">
+                    {{ i['status'] }}
+                </span>
+            </p>
+            <p style="margin: 5px 0;"><i class="fas fa-clock"></i> <strong>Report</strong> <a href="{{i['report']}}">Clcik her to view report</a></p>
+            <!-- Buttons -->
+            <!-- <div style="margin-top: 15px; display: flex; justify-content: space-between;">
+                <a href="?action=accept&id={{ i['post_id'] }}" style="text-decoration: none; background: #28a745; color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; transition: 0.3s;">
+                    <i class="fas fa-check-circle"></i> Accept
+                </a>
+                <a href="?action=reject&id={{ i['post_id'] }}" style="text-decoration: none; background: #dc3545; color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; transition: 0.3s;">
+                    <i class="fas fa-times-circle"></i> Reject
+                </a>
+            </div> -->
+    
+            <!-- Hover Effect -->
+            <style>
+                div:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                }
+            </style>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- FontAwesome Icons (Only Needed if You Haven’t Included in Your Project) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+</center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

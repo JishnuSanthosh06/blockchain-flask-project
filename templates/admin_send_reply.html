@@ -1,0 +1,79 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<center>
+    <!-- <h2>Send reply Here</h2>
+    <form method="post">
+        <table  class="table table-hover">
+            <tr>
+                <td><label for="reply" name="reply">Reply</label></td>
+                <td><textarea name="reply" cols="40" rows="5"></textarea></td>
+            </tr>
+            <tr> 
+                <td><button type="submit" name="submit">Submit</button></td>
+            </tr>
+        </table>
+    </form>
+</center> -->
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-4 shadow-lg" style="max-width: 450px; border-radius: 15px;">
+        <h2 class="text-center text-primary mb-3">Send Reply</h2>
+        <form method="post">
+            <div class="mb-3">
+                <label for="reply" class="form-label fw-bold">Reply</label>
+                <textarea class="form-control" name="reply" id="reply" rows="4" placeholder="Type your reply here..."></textarea>
+                <small class="text-danger d-none" id="reply-error">Reply cannot be empty!</small>
+            </div>
+            <div class="text-center">
+                <button type="submit" name="submit" class="btn btn-primary px-4 py-2">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Success Popup -->
+<div id="success-popup" class="position-fixed top-50 start-50 translate-middle bg-white p-4 rounded shadow-lg text-center d-none" style="border: 2px solid #28a745;">
+    <p class="text-success fw-bold">✅ Reply Sent Successfully!</p>
+    <button class="btn btn-success btn-sm" onclick="closePopup()">OK</button>
+</div>
+
+<!-- JavaScript Validation, Popup, and Redirect -->
+<script>
+    function validateReply(event) {
+        event.preventDefault();  
+
+        let replyText = document.getElementById("reply").value.trim();
+        let errorElement = document.getElementById("reply-error");
+        let popup = document.getElementById("success-popup");
+
+        if (replyText === "") {
+            errorElement.classList.remove("d-none");
+            return false;
+        } else {
+            errorElement.classList.add("d-none");
+            popup.classList.remove("d-none");
+
+            setTimeout(() => {
+                popup.classList.add("d-none");
+                document.querySelector("form").reset();
+                window.history.back(); // Redirects to the previous page
+            }, 2000);
+        }
+
+        return true;
+    }
+
+    function closePopup() {
+        document.getElementById("success-popup").classList.add("d-none");
+        window.history.back(); // Redirect to the previous page on manual close
+    }
+</script>
+
+
+
+    
+
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

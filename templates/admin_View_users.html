@@ -1,0 +1,53 @@
+{% include 'admin_header.html' %}
+
+<br><br><br><br><br><br><br>
+    <center>
+        <h2>View Users</h2>
+        <!-- <table class="table table-hover">
+            <tr>
+                <th>user_id</th>
+                <th>login_id</th>
+                <th>hospital_name</th>
+                <th>place</th>
+                <th>email</th>
+                <th>phone</th>
+            </tr>
+
+            {% for i in data['user'] %}
+
+            <tr>
+                <td>{{i ['user_id']}}</td>
+                <td>{{i ['login_id']}}</td>
+                <td>{{i ['hospital_name']}}</td>
+                <td>{{i ['place']}}</td>
+                <td>{{i ['email']}}</td>
+                <td>{{i ['phone']}}</td>
+            </tr>
+            
+            {% endfor %}
+
+        </table> -->
+
+        <div class="container mt-4">
+            <div class="row">
+                {% for i in data['user'] %}
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ i['hospital_name'] }}</h5>
+                            <p class="card-text"><strong>User ID:</strong> {{ i['user_id'] }}</p>
+                            <p class="card-text"><strong>Login ID:</strong> {{ i['login_id'] }}</p>
+                            <p class="card-text"><strong>Place:</strong> {{ i['place'] }}</p>
+                            <p class="card-text"><strong>Email:</strong> {{ i['email'] }}</p>
+                            <p class="card-text"><strong>Phone:</strong> {{ i['phone'] }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

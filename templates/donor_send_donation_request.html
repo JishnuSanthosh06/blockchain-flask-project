@@ -1,0 +1,234 @@
+{% include 'donor_header.html' %}
+<br><br><br><br>
+<center>
+    <!-- <h2>Send donation request</h2>
+    <form method="post">
+        <table>
+            <tr>
+                <td>Title :</td>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <td>Organ Name :</td>
+                <td><input type="text" name="og"></td>
+            </tr>
+            <tr colspan="2">
+                <td ><button type="submit" name="submit">Submit</button></td>
+            </tr>
+
+        </table> -->
+
+
+        <h2 class="title">Send Donation Request</h2>
+
+<div class="form-container">
+    <form method="post" onsubmit="return validateForm()">
+        <table>
+            <tr>
+                <td><label for="title">Title:</label></td>
+                <td><input type="text" id="title" name="title" required pattern="^[A-Za-z0-9 ]{3,50}$" title="Only letters, numbers, and spaces allowed. Min 3 characters."></td>
+            </tr>
+            <tr>
+                <td><label for="og">Organ Name:</label></td>
+                <td><input type="text" id="og" name="og" required pattern="^[A-Za-z ]{2,30}$" title="Only letters and spaces allowed. Min 2 characters."></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="button-row">
+                    <button type="submit" name="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<!-- JavaScript for Validation Alert & Prevent Resubmission -->
+<script>
+    function validateForm() {
+        let title = document.getElementById('title').value;
+        let og = document.getElementById('og').value;
+
+        let titlePattern = /^[A-Za-z0-9 ]{3,50}$/;
+        let organPattern = /^[A-Za-z ]{2,30}$/;
+
+        if (!titlePattern.test(title)) {
+            alert("Invalid Title! Only letters, numbers, and spaces allowed (Min: 3 characters).");
+            return false;
+        }
+
+        if (!organPattern.test(og)) {
+            alert("Invalid Organ Name! Only letters and spaces allowed (Min: 2 characters).");
+            return false;
+        }
+
+        return true;
+    }
+
+    // Prevent form resubmission on refresh
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
+<!-- CSS Styling with Resolution Fixes -->
+<style>
+    * {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #f4f4f4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
+        margin: 15px 0;
+        text-align: center;
+    }
+
+    .form-container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 500px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    label {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        transition: border 0.3s;
+    }
+
+    input:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .button-row {
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #007bff;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        body {
+            padding: 10px;
+        }
+
+        .form-container {
+            width: 90%;
+        }
+
+        input {
+            padding: 8px;
+        }
+
+        button {
+            font-size: 14px;
+            padding: 10px;
+        }
+    }
+</style>
+
+
+        <!-- <table class="table table-hover">
+            <tr>
+            <th>Donation_id</th>
+            <th>User_id</th>
+            <th>Title</th>
+            <th>Organ_name</th>
+            <th>Date</th>
+            <th>Status</th>
+            </tr>
+
+            {% for i in data['do'] %}
+            <tr>
+                <td>{{ i ['donation_id'] }}</td>
+                <td>{{ i ['user_id'] }}</td>
+                <td>{{ i ['title'] }}</td>
+                <td>{{ i ['organ_name'] }}</td>
+                <td>{{ i ['date'] }}</td>
+                <td>{{ i ['status'] }}</td>
+            </tr>
+            {% endfor %}
+        </table> -->
+
+        
+
+        <h2 class="mb-4 text-center">Donation Requests</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-4">
+            {% for i in data['do'] %}
+            <div class="card shadow-lg border-0 rounded-4 p-3" style="width: 20rem; background: #f8f9fa;">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-primary fw-bold">{{ i['title'] }}</h5>
+                    <hr class="my-2">
+                    <p><strong>Donation ID:</strong> {{ i['donation_id'] }}</p>
+                    <p><strong>User ID:</strong> {{ i['user_id'] }}</p>
+                    <p><strong>Organ Name:</strong> <span class="text-danger fw-bold">{{ i['organ_name'] }}</span></p>
+                    <p><strong>Date:</strong> <span class="text-success">{{ i['date'] }}</span></p>
+                    <p><strong>Status:</strong> 
+                        <span class="badge 
+                            {% if i['status'] == 'Accepted' %} bg-success 
+                            {% elif i['status'] == 'Pending' %} bg-warning 
+                            {% else %} bg-danger {% endif %} ">
+                            {{ i['status'] }}
+                        </span>
+                    </p>
+                    <a href="#" class="btn btn-outline-dark btn-sm">View Details</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        
+    </form>
+</center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

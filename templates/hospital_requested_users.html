@@ -1,0 +1,69 @@
+{% include 'hospital_header.html' %}
+<br><br><br><br><br><br><br>
+<center>
+    <h2>Requested Users</h2>
+    <!-- <table class="table table-hover">
+        <tr>
+            <th>Post_id</th>
+            <th>Seneder_id</th>
+            <th>Receiever_id</th>
+            <th>Title</th>
+            <th>Organ_name</th>
+            <th>Description</th>
+            <th>Operation_date</th>
+            <th>Date</th>
+            <th>Status</th>
+            
+            
+        </tr>
+        {% for i in data['ru'] %}
+        <tr>
+            <td>{{i ['post_id'] }}</td>
+            <td>{{i ['sender_id'] }}</td>
+            <td>{{i ['receiver_id'] }}</td>
+            <td>{{i ['title'] }}</td>
+            <td>{{i ['organ_name'] }}</td>
+            <td>{{i ['description'] }}</td>
+            <td>{{i ['operation_date'] }}</td>
+            <td>{{i ['date'] }}</td>
+            <td>{{i ['status'] }}</td>
+            <td><a href="/hospital_check_user_details">Chcek user deatils</a></td>
+            <td><a href="?action=accept&id={{i['post_id']}}">Accept</a></td>
+            <td><a href="?action=reject&id={{i['post_id']}}">Reject</a></td>
+        </tr>
+        {% endfor%}
+    </table> -->
+
+    <div class="container mt-4">
+        <div class="row">
+            {% for i in data['ru'] %}
+            <div class="col-md-4">
+                <div class="card shadow-lg mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i['title'] }}</h5>
+                        <p class="card-text"><strong>Post ID:</strong> {{ i['post_id'] }}</p>
+                        <p class="card-text"><strong>Sender ID:</strong> {{ i['sender_id'] }}</p>
+                        <p class="card-text"><strong>Receiver ID:</strong> {{ i['receiver_id'] }}</p>
+                        <p class="card-text"><strong>Organ Name:</strong> {{ i['organ_name'] }}</p>
+                        <p class="card-text"><strong>Description:</strong> {{ i['description'] }}</p>
+                        <p class="card-text"><strong>Operation Date:</strong> {{ i['operation_date'] }}</p>
+                        <p class="card-text"><strong>Date:</strong> {{ i['date'] }}</p>
+                        <p class="card-text"><strong>Status:</strong> <span class="badge {% if i['status'] == 'Accepted' %} bg-success {% elif i['status'] == 'Rejected' %} bg-danger {% else %} bg-warning {% endif %}">{{ i['status'] }}</span></p>
+                        <p class="card-text"><strong>Report:</strong> <a href="{{ i['date'] }}">Click here to view report</a></p>
+                        <a href="/hospital_check_user_details" class="btn btn-primary btn-sm">Check User Details</a>
+                        <a href="?action=accept&id={{ i['post_id'] }}" class="btn btn-success btn-sm">Accept</a>
+                        <a href="?action=reject&id={{ i['post_id'] }}" class="btn btn-danger btn-sm">Reject</a>
+                        
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    
+</center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

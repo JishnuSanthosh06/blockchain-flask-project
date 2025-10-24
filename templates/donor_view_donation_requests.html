@@ -1,0 +1,74 @@
+{% include 'donor_header.html' %}
+
+<br><br><br><br><br><br><br>
+    <center>
+        <!-- <h2>View Donation requests</h2>
+        <table class="table table-hover">
+            <tr>
+            <th>Donation_id</th>
+            <th>User_id</th>
+            <th>Title</th>
+            <th>Organ_name</th>
+            <th>Date</th>
+            <th>Status</th>
+            </tr>
+
+            {% for i in data['do'] %}
+            <tr>
+                <td>{{ i ['donation_id'] }}</td>
+                <td>{{ i ['user_id'] }}</td>
+                <td>{{ i ['title'] }}</td>
+                <td>{{ i ['organ_name'] }}</td>
+                <td>{{ i ['date'] }}</td>
+                <td>{{ i ['status'] }}</td>
+                <td><a href="?action=accept&id={{i['donation_id']}}">Accept</a></td>
+                <td><a href="?action=reject&id={{i['donation_id']}}">Reject</a></td>
+            </tr>
+            {% endfor %}
+        </table> -->
+
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; padding: 20px; background: #f4f7fc; font-family: Arial, sans-serif;">
+            {% for i in data['do'] %}
+            <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                <h3 style="color: #007bff; margin-bottom: 10px;">{{ i['title'] }}</h3>
+                <p style="margin: 5px 0; font-size: 15px;"><strong>Donation ID:</strong> {{ i['donation_id'] }}</p>
+                <p style="margin: 5px 0; font-size: 15px;"><strong>User ID:</strong> {{ i['user_id'] }}</p>
+                <p style="margin: 5px 0; font-size: 15px;"><strong>Organ:</strong> {{ i['organ_name'] }}</p>
+                <p style="margin: 5px 0; font-size: 15px;"><strong>Date:</strong> {{ i['date'] }}</p>
+        
+                <!-- Status with Color Coding -->
+                {% set status_color = 'orange' if i['status'] == 'Pending' else 'green' if i['status'] == 'Accepted' else 'red' %}
+
+                <p style="margin: 10px 0; font-size: 16px; font-weight: bold;">
+                    <strong>Status: </strong>
+                    <span style="color: {{ status_color }}; ">
+                        {{ i['status'] }}
+                    </span>
+                </p>
+
+        
+                <!-- Buttons -->
+                <div style="margin-top: 15px; display: flex; justify-content: space-between;">
+                    <a href="?action=accept&id={{ i['donation_id'] }}" style="text-decoration: none; background: #28a745; color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; transition: 0.3s;">Accept</a>
+                    <a href="?action=reject&id={{ i['donation_id'] }}" style="text-decoration: none; background: #dc3545; color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; transition: 0.3s;">Reject</a>
+                </div>
+        
+                <!-- Hover Effect -->
+                <style>
+                    div:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+                    }
+                </style>
+            </div>
+            {% endfor %}
+        </div>
+        
+        
+        
+        
+    </center>
+
+<br><br><br><br><br><br><br>
+    {% include 'footer.html' %}

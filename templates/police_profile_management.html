@@ -1,0 +1,62 @@
+{% include 'police_header.html' %}
+<center>
+    
+    <!-- <table class="table table-hover">
+        <tr>
+            <td>Police_id</td>
+            <td>Login_id</td>
+            <td>Station_name</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Place</td>
+        </tr>
+        {% for i in data['pol'] %}
+        <tr>
+            <td>{{i ['police_id'] }}</td>
+            <td>{{i ['login_id'] }}</td>
+            <td>{{i ['station_Name']}}</td>
+            <td>{{i ['email'] }}</td>
+            <td>{{i ['phone'] }}</td>
+            <td>{{i ['place'] }}</td>
+            <td><a href="/police_edit_profile">Edit</a></td>
+
+        </tr>
+        {% endfor %}
+    </table> -->
+
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="container">
+            <h2>Police Profile</h2>
+            <div class="row justify-content-center">
+                {% for i in data['pol'] %}
+                <div class="col-md-4">
+                    <div class="card shadow-lg border-0 mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">
+                                <i class="fas fa-user-shield"></i> Police ID: {{ i['police_id'] }}
+                            </h5>
+                            <p class="card-text"><strong><i class="fas fa-user-lock"></i> Login ID:</strong> {{ i['login_id'] }}</p>
+                            <p class="card-text"><strong><i class="fas fa-building"></i> Station Name:</strong> {{ i['station_Name'] }}</p>
+                            <p class="card-text"><strong><i class="fas fa-envelope"></i> Email:</strong> {{ i['email'] }}</p>
+                            <p class="card-text"><strong><i class="fas fa-phone"></i> Phone:</strong> {{ i['phone'] }}</p>
+                            <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i> Place:</strong> {{ i['place'] }}</p>
+                            <div class="d-flex justify-content-between">
+                                <a href="/police_edit_profile?id={{ i['police_id'] }}" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-edit"></i> Edit Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+</center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

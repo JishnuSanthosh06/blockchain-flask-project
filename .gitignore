@@ -1,0 +1,33 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+ENV/
+.venv/
+env/
+
+# Environment & config
+.env
+instance/
+*.sqlite3
+*.log
+
+# Node modules (large folder)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Static build folders (auto-generated)
+build/
+dist/
+staticfiles/
+
+# IDE/editor/system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

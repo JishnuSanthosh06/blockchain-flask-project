@@ -1,0 +1,57 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br><br>
+    <center>
+        <!-- <h2>View Donors</h2>
+        <table class="table table-hover">
+            <tr>
+                <th>User_id</th>
+                <th> Login_id</th>
+                <th> Firstname</th>
+                <th> Lastname</th>
+                <th> Email</th>
+                <th> Phone</th>
+                <th> Place</th>
+            </tr>
+            
+            {% for i in data['don'] %}
+             
+            <tr>
+                <td>{{i ['user_id']}}</td>
+                <td>{{i ['login_id']}}</td>
+                <td>{{i ['firstname']}}</td>
+                <td>{{i ['lastname']}}</td>
+                <td>{{i ['email']}}</td>
+                <td>{{i ['phone']}}</td>
+                <td>{{i ['place']}}</td>
+            </tr>
+            
+            {% endfor %}
+
+        </table> -->
+
+        <div class="container mt-4">
+            <h2 class="text-center mb-4">View Donors</h2>
+            
+            <div class="row">
+                {% for i in data['don'] %}
+                <div class="col-md-4">
+                    <div class="card shadow-lg mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary"><strong>{{ i['firstname'] }} {{ i['lastname'] }}</strong></h5>
+                            <p class="card-text"><strong>Email:</strong> {{ i['email'] }}</p>
+                            <p class="card-text"><strong>Phone:</strong> {{ i['phone'] }}</p>
+                            <p class="card-text"><strong>Place:</strong> <span class="badge bg-info text-dark">{{ i['place'] }}</span></p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <small class="text-muted">User ID: {{ i['user_id'] }} | Login ID: {{ i['login_id'] }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

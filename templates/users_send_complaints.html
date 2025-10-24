@@ -1,0 +1,228 @@
+{% include 'users_header.html' %}
+<br><br><br><br>
+<center>
+    <!-- <h2>Send Complaints</h2>
+    <form method="post">
+        <table>
+            <tr>
+                <td> Complaint :</td>
+                <td><input type="text" name="complaint"></td>
+            </tr>
+            <tr>
+                <td><button type="submit" name="submit">Submit</button></td>
+            </tr>
+        </table>
+        
+        <table>
+            <tr>
+                <th>Complaint id</th>
+                <th>User id</th>
+                <th>Complaint</th>
+                <th>Reply</th>
+                <th>Date</th>
+            </tr>
+    
+            {% for i in data['comp'] %}
+    
+            <tr>
+                <td>{{i['complaint_id']}}</td>
+                <td>{{i['user_id']}}</td>
+                <td>{{i['complaint']}}</td>
+                <td>{{i['reply']}}</td>
+                <td>{{i['date']}}</td>
+            </tr>
+    
+            {% endfor %}
+         
+        </table> -->
+        
+        <center>
+        
+        <h2 class="title">Send Complaints</h2>
+        
+        <div class="form-container">
+            <form method="post" id="complaintForm">
+                <table>
+                    <tr>
+                        <td><label for="complaint">Complaint:</label></td>
+                        <td><input type="text" id="complaint" name="complaint" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="button-row">
+                            <button type="submit" name="submit">Submit</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        
+        <h2 class="title">Complaint History</h2>
+        
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Complaint ID</th>
+                    <th>User ID</th>
+                    <th>Complaint</th>
+                    <th>Reply</th>
+                    <th>Date</th>
+                </tr>
+        
+                {% for i in data['comp'] %}
+                <tr>
+                    <td>{{ i['complaint_id'] }}</td>
+                    <td>{{ i['user_id'] }}</td>
+                    <td>{{ i['complaint'] }}</td>
+                    <td>{{ i['reply'] }}</td>
+                     <td>{{ i['date'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+        <!-- JavaScript Validation -->
+        <script>
+            document.getElementById("complaintForm").addEventListener("submit", function(event) {
+                let complaintInput = document.getElementById("complaint").value.trim();
+        
+                if (complaintInput === "") {
+                    alert("Complaint field cannot be empty!");
+                    event.preventDefault();
+                    return false;
+                }
+        
+                if (complaintInput.length < 5) {
+                    alert("Complaint must be at least 5 characters long!");
+                    event.preventDefault();
+                    return false;
+                }
+        
+                alert("Complaint submitted successfully!");
+            });
+        </script>
+        
+        <!-- CSS Styling -->
+        <style>
+            * {
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+        
+            body {
+                background: #f4f4f4;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                padding: 20px;
+            }
+        
+            .title {
+                font-size: 20px;
+                font-weight: bold;
+                color: #333;
+                margin: 15px 0;
+                text-align: center;
+            }
+        
+            .form-container {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+                width: 400px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        
+            .table-container {
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+                width: 90%;
+                overflow-x: auto;
+            }
+        
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+            }
+        
+            td, th {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+                word-wrap: break-word;
+                max-width: 250px; /* Adjust width */
+                overflow-wrap: break-word;
+            }
+        
+            th {
+                background: #007bff;
+                color: white;
+            }
+        
+            tr:hover {
+                background: #f1f1f1;
+            }
+        
+            label {
+                font-weight: bold;
+                font-size: 14px;
+            }
+        
+            input {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                transition: border 0.3s;
+            }
+        
+            input:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+        
+            .button-row {
+                text-align: center;
+                padding-top: 10px;
+            }
+        
+            button {
+                width: 100%;
+                padding: 12px;
+                background: #007bff;
+                color: white;
+                font-size: 16px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+        
+            button:hover {
+                background: #0056b3;
+            }
+        
+            /* Scrollable table for small screens */
+            @media (max-width: 600px) {
+                .table-container {
+                    overflow-x: auto;
+                }
+        
+                table {
+                    display: block;
+                    white-space: nowrap;
+                }
+            }
+        </style>
+        
+</center>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}
+        

@@ -1,0 +1,167 @@
+{% include 'public_header.html' %}
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+
+    <center>
+        <!-- <h1> Hospital Register</h1>
+        <form method="post">
+        <table>
+            <tr>
+                <td><label for="hospital_name">Hospital_name : </label></td>
+                <td><input type="text" name="hospital_name"></input></td>
+            </tr> 
+            <tr>
+                <td><label for="place">Place : </label></td>
+                <td><input type="text" name="place"></input></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email : </label></td>
+                <td><input type="text" name="email"></input></td>
+            </tr>
+            <tr>
+            <td><label for="phone"> Phone: </label></td>
+            <td><input type="text" name="phone"></input></td>
+            </tr>
+            <tr>
+                <td><label for="u_name"> Username : </label></td>
+                <td><input type="text" name="u_name"></input></td>
+            </tr>
+            <tr>
+                <td><label for="p"> Password: </label></td>
+                <td><input type="password" name="pwd"></input></td>
+            </tr>
+            <tr>
+            <td><button type="submit" name="submit">Register</button></td>
+            </tr>
+        </table>
+        </form> -->
+
+        <h1 class="title">Hospital Register</h1>
+
+<div class="form-container">
+    <form method="post">
+        <table>
+            <tr>
+                <td><label for="hospital_name">Hospital Name </label></td>
+                <td><input type="text" name="hospital_name"></td>
+            </tr> 
+            <tr>
+                <td><label for="place">Place </label></td>
+                <td><input type="text" name="place"></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email </label></td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td><label for="phone">Phone </label></td>
+                <td><input type="text" name="phone"></td>
+            </tr>
+            <tr>
+                <td><label for="u_name">Username </label></td>
+                <td><input type="text" name="u_name"></td>
+            </tr>
+            <tr>
+                <td><label for="pwd">Password </label></td>
+                <td><input type="password" name="pwd"></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="button-row">
+                    <button type="submit" name="submit">Register</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<!-- CSS Styling -->
+<style>
+    * {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #f4f4f4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    .title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .form-container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+        width: 350px;
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    label {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        transition: border 0.3s;
+    }
+
+    input:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .button-row {
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #007bff;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+</style>
+
+         
+</center>
+
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}
+
+  

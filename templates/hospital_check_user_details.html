@@ -1,0 +1,57 @@
+{% include 'hospital_header.html' %}
+
+<br><br><br><br><br><br><br>
+<center>
+    <h2>Check user details</h2>
+    <!-- <table class="table table-hover">
+        <tr>
+            <th>user_id</th>
+            <th>login_id</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>place</th>   
+        </tr>
+
+        {% for i in  data['check'] %}
+        <tr>
+            <td>{{i ['user_id']}}</td>
+            <td>{{i ['login_id']}}</td>
+            <td>{{i ['firstname']}}</td>
+            <td>{{i ['lastname']}}</td>
+            <td>{{i ['email']}}</td>
+            <td>{{i ['phone']}}</td>
+            <td>{{i ['place']}}</td>
+        </tr>
+        {% endfor %}
+    </table> -->
+
+    <div class="container mt-4">
+        <h2 class="text-center text-primary mb-4">User Details</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for i in data['check'] %}
+            <div class="col">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-success fw-bold">{{ i['firstname'] }} {{ i['lastname'] }}</h5>
+                        <p class="card-text"><strong>User ID:</strong> {{ i['user_id'] }}</p>
+                        <p class="card-text"><strong>Login ID:</strong> {{ i['login_id'] }}</p>
+                        <p class="card-text"><strong>Email:</strong> {{ i['email'] }}</p>
+                        <p class="card-text"><strong>Phone:</strong> {{ i['phone'] }}</p>
+                        <p class="card-text"><strong>Place:</strong> {{ i['place'] }}</p>
+                        <a href="/hospital_user_message?action=chat&id={{ i['login_id'] }}&name={{i['firstname']}}" 
+                           class="btn btn-warning btn-sm w-100">
+                            Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+</center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

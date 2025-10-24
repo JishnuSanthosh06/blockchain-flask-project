@@ -1,0 +1,54 @@
+{% include 'users_header.html' %}
+<br><br><br><br><br><br><br>
+<center>
+    <!-- <h2>View Others Donation Requests</h2>
+    <table class="table table-hover">
+        <tr>
+            <th>Donation_id</th>
+            <th>User_id</th>
+            <th>Title</th>
+            <th>Organ_name</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        {% for i in data['do'] %}
+        <tr>
+            <td>{{ i['donation_id']}}</td>
+            <td>{{i ['user_id'] }}</td>
+            <td>{{ i['title'] }}</td>
+            <td>{{ i['organ_name'] }}</td>
+            <td>{{i['date'] }}</td>
+            <td>{{i ['status'] }}</td>
+        </tr>
+        {% endfor %}
+    </table> -->
+
+    <h2 class="mb-4 text-center">View Others' Donation Requests</h2>
+<div class="d-flex flex-wrap justify-content-center gap-4">
+    {% for i in data['do'] %}
+    <div class="card shadow-sm border-0 rounded-4 p-3" style="width: 22rem; background: #f8f9fa;">
+        <div class="card-body text-center">
+            <h5 class="card-title text-primary fw-bold">{{ i['title'] }}</h5>
+            <hr class="my-2">
+            <p><strong>Donation ID:</strong> {{ i['donation_id'] }}</p>
+            <p><strong>User ID:</strong> {{ i['user_id'] }}</p>
+            <p><strong>Organ Name:</strong> <span class="text-danger fw-bold">{{ i['organ_name'] }}</span></p>
+            <p><strong>Date:</strong> <span class="text-success">{{ i['date'] }}</span></p>
+            <p><strong>Status:</strong> 
+                <span class="badge 
+                    {% if i['status'] == 'Accepted' %} bg-success 
+                    {% elif i['status'] == 'Pending' %} bg-warning 
+                    {% else %} bg-danger {% endif %} ">
+                    {{ i['status'] }}
+                </span>
+            </p>
+            <a href="#" class="btn btn-outline-dark btn-sm">View Details</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

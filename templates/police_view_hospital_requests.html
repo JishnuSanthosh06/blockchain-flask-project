@@ -1,0 +1,60 @@
+{% include 'police_header.html' %}
+
+<br><br><br><br><br><br><br>
+<center>
+     <!-- <h2>View hospital requests</h2> 
+     <table class="table table-hover">
+        <tr>
+            <th>Post_id</th>
+            <th>Sender_id</th>
+            <th>Receiever_id</th>
+            <th>Title</th>
+            <th>Organ_name</th>
+            <th>Description</th>
+            <th>Report</th>
+            <th>Operation_date</th>
+            <th>Date</th>
+            <th>status</th>
+            <th>Report</th>
+        </tr>
+        {% for i in data['ho']%}
+        <tr>
+            <td>{{ i ['post_id']}}</td>
+            <td>{{ i ['sender_id']}}</td>
+            <td>{{i ['receiever_id']}}</td>
+            <td>{{i ['title']}}</td>
+            <td>{{i ['organ_name']}}</td>
+            <td>{{i ['description']}}</td>
+            <td>{{i ['report'] }}</td>
+            <td>{{i ['operation_date']}}</td>
+            <td>{{i ['date']}}</td>
+            <td>{{i ['status']}}</td>
+            <td><a href="{{i ['report']}}">click her to view report</a></td>
+        </tr>
+        {% endfor %}
+    </table> -->
+     <h2 class="mb-4">View Hospital Requests</h2>
+<div class="row">
+    {% for i in data['ho'] %}
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title">{{ i['title'] }}</h5>
+                <p><strong>Post ID:</strong> {{ i['post_id'] }}</p>
+                <p><strong>Sender ID:</strong> {{ i['sender_id'] }}</p>
+                <p><strong>Receiver ID:</strong> {{ i['receiever_id'] }}</p>
+                <p><strong>Organ Name:</strong> {{ i['organ_name'] }}</p>
+                <p><strong>Description:</strong> {{ i['description'] }}</p>
+                <p><strong>Operation Date:</strong> {{ i['operation_date'] }}</p>
+                <p><strong>Date:</strong> {{ i['date'] }}</p>
+                <p><strong>Status:</strong> <span class="badge bg-info">{{ i['status'] }}</span></p>
+                <p><strong>Report:</strong><a href="{{i ['report']}}">click her to view report</a></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</center>
+
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

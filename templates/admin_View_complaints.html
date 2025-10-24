@@ -1,0 +1,63 @@
+{% include 'admin_header.html' %}
+
+<br><br><br><br><br><br><br>
+<center>
+    <h2>View Complaints</h2>
+    <!-- <table class="table table-hover">
+        <tr>
+            <th>Complaint id</th>
+            <th>User id</th>
+            <th>Complaint</th>
+            <th>Reply</th>
+            <th>Date</th>
+        </tr>
+
+        {% for i in data['com'] %}
+
+        <tr>
+            <td>{{i['complaint_id']}}</td>
+            <td>{{i['user_id']}}</td>
+            <td>{{i['complaint']}}</td>
+            <td>{{i['reply']}}</td>
+            <td>{{i['date']}}</td>
+            <td><a href="/admin_send_reply?complaint_id={{i['complaint_id']}}">Send reply</a></td>
+        </tr>
+
+        {% endfor %}
+     
+    </table> -->
+
+    <div class="container mt-4">
+        {% for i in data['com'] %}
+        <div class="border p-3 mb-3 rounded shadow-sm bg-light">
+            <h5 class="text-danger">
+                <i class="fas fa-exclamation-circle"></i> Complaint #{{ i['complaint_id'] }}
+            </h5>
+            
+            <p><strong>User ID:</strong> {{ i['user_id'] }}</p>
+            <p><strong>Complaint:</strong> {{ i['complaint'] }}</p>
+            
+            <!-- Display Admin Reply -->
+            <p><strong>Reply:</strong> 
+                {% if i['reply'] is not none and i['reply']|length > 0 %}
+                    <span class="text-success font-weight-bold">{{ i['reply'] }}</span> 
+                {% else %}
+                    <span class="text-muted">No reply yet</span>
+                {% endif %}
+            </p>
+            
+            <p><strong>Date:</strong> {{ i['date'] }}</p>
+            
+            <!-- Button for Admin to Send Reply -->
+            <a href="/admin_send_reply?complaint_id={{ i['complaint_id'] }}" class="btn btn-primary btn-sm">
+                <i class="fas fa-reply"></i> Send Reply
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    
+    
+</center> 
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

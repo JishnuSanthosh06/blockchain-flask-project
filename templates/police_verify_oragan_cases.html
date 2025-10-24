@@ -1,0 +1,91 @@
+{% include 'police_header.html' %}
+<br><br><br><br><br><br><br>
+<center>
+    <h2>Verify Organ Cases</h2>
+    <!-- <table class="table table-hover">
+        <tr>
+            <th>Post_id</th>
+            <th>Seneder_id</th>
+            <th>Receiever_id</th>
+            <th>Title</th>
+            <th>Organ_name</th>
+            <th>Description</th>
+            <th>Operation_date</th>
+            <th>Date</th>
+            <th>Status</th>
+
+        </tr>
+        {% for i in data['ru'] %}
+        <tr>
+            <td>{{i ['post_id'] }}</td>
+            <td>{{i ['sender_id'] }}</td>
+            <td>{{i ['receiver_id'] }}</td>
+            <td>{{i ['title'] }}</td>
+            <td>{{i ['organ_name'] }}</td>
+            <td>{{i ['description'] }}</td>
+            <td>{{i ['operation_date'] }}</td>
+            <td>{{i ['date'] }}</td>
+            <td>{{i ['status'] }}</td>
+            <td><a href="?action=Verify&id={{i['post_id']}}">Verify</a></td>
+            <td><a href="?action=Reject&id={{i['post_id']}}">Reject</a></td>
+        </tr>
+        {% endfor%}
+    </table> -->
+    <div class="container mt-4">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Post ID</th>
+                        <th>Sender ID</th>
+                        <th>Receiver ID</th>
+                        <th>Title</th>
+                        <th>Organ Name</th>
+                        <th>Description</th>
+                        <th>Operation Date</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                        <th>Report</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data['ru'] %}
+                    <tr>
+                        <td>{{ i['post_id'] }}</td>
+                        <td>{{ i['sender_id'] }}</td>
+                        <td>{{ i['receiver_id'] }}</td>
+                        <td>{{ i['title'] }}</td>
+                        <td>{{ i['organ_name'] }}</td>
+                        <td>{{ i['description'] }}</td>
+                        <td>{{ i['operation_date'] }}</td>
+                        <td>{{ i['date'] }}</td>
+                        <td>
+                            <span class="badge {% if i['status'] == 'Pending' %}badge-warning{% elif i['status'] == 'Verified' %}badge-success{% else %}badge-danger{% endif %}">
+                                {{ i['status'] }}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="?action=Verify&id={{ i['post_id'] }}" class="btn btn-sm btn-success">
+                                <i class="fas fa-check-circle"></i> Verify
+                            </a>
+                            <a href="?action=Reject&id={{ i['post_id'] }}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-times-circle"></i> Reject
+                            </a>
+                        </td>
+                        <td><a href="{{ i['report'] }}">Click here to view report</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Bootstrap & FontAwesome (Include in Your Project) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+</center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

@@ -1,0 +1,55 @@
+{% include 'users_header.html' %}
+<br><br><br><br><br><br><br>
+<center>
+    <h3>View Hospitals</h3>
+    <!-- <table class="table table-hover">
+        <tr>
+            <th>Hopsital_id</th>
+            <th>Login_id</th>
+            <th>Hospital_name</th>
+            <th>Place</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+
+        {% for i in data['hosp'] %}
+            <tr>
+                <td>{{i ['hopsital_id']}}</td>
+                <td>{{i ['login_id']}}</td>
+                <td>{{i ['hospital_name']}}</td>
+                <td>{{i ['place']}}</td>
+                <td>{{i ['email']}}</td>
+                <td>{{i ['phone']}}</td>
+            </tr>
+
+            {% endfor %}
+
+    </table> -->
+
+
+    <div class="container mt-4"></div>
+        <div class="row">
+            {% for i in data['hosp'] %}
+            <div class="col-md-4">
+                <div class="card shadow-lg mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i['hospital_name'] }}</h5>
+                        <p class="card-text"><strong>Hospital ID:</strong> {{ i['hopsital_id'] }}</p>
+                        <p class="card-text"><strong>Login ID:</strong> {{ i['login_id'] }}</p>
+                        <p class="card-text"><strong>Place:</strong> {{ i['place'] }}</p>
+                        <p class="card-text"><strong>Email:</strong> {{ i['email'] }}</p>
+                        <p class="card-text"><strong>Phone:</strong> {{ i['phone'] }}</p>
+                        <a href="/user_view_message?action=chat&id={{ i['login_id'] }}&name={{i['hospital_name']}}" 
+                           class="btn btn-warning btn-sm w-100">
+                            Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+{% include 'footer.html' %}

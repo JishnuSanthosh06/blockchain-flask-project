@@ -1,0 +1,268 @@
+
+{% include "donor_header.html" %}
+<br><br><br><br><br>
+
+<center style="padding-bottom: 25%;">
+
+    <section class="msger">
+        <header class="msger-header">
+          <h3 style="color: white;">
+            <img src="../static/assets/img/hospital.png" height="30px" width="30px" alt="">
+            <div class="a">{{name}}</div>
+          </h3>
+          <div class="msger-header-title">
+            <i class="fas fa-comment-alt"></i> Chat 
+          </div>
+          <div class="msger-header-options">
+            <span><i class="fas fa-cog"></i></span>
+          </div>
+        </header>
+      
+        <main id="chat" class="msger-chat">
+          {% for i in data['rg'] %}
+            {% if i['sender_type'] == 'hospital' %}
+              <div class="msg left-msg">
+                <div class="msg-img" style="background-image: url(../static/assets/img/hospital.png)"></div>
+      
+                <div class="msg-bubble">
+                  <div class="msg-info">
+                    <div class="msg-info-name">{{name}}</div>
+                  </div>
+      
+                  <div class="msg-text">
+                    {{i['message']}}
+                    <div class="msg-info-time">{{i['time']}}</div>
+                  </div>
+                </div>
+              </div>
+            {% elif i['sender_type'] == 'donor' %}
+              <div class="msg right-msg">
+                <div class="msg-img" style="background-image: url(../static/assets/img/donor.png)"></div>
+      
+                <div class="msg-bubble">
+                  <div class="msg-info"></div>
+      
+                  <div class="msg-text">
+                    {{i['message']}}
+                    <div class="msg-info-time">{{i['time']}}</div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </main>
+      
+        <form action="" class="msger-inputarea" method="post">
+          <input type="text" class="msger-input" name="chat" placeholder="Enter your message..." autocomplete="off">
+          <button type="submit" name="submit" class="msger-send-btn"><i class="fas fa-paper-plane"></i> SEND</button>
+        </form>
+      </section>
+    </center>
+      <style>
+      :root {
+        --body-bg: linear-gradient(135deg, #292E49 0%, #536976 100%);
+        --msger-bg: #2C3E50;
+        --border: 2px solid #444;
+        --left-msg-bg: #BDC3C7;
+        --right-msg-bg: #2980B9;
+        --input-bg: #34495E;
+        --send-btn-bg: #27AE60;
+        --send-btn-hover: #2ECC71;
+        --left-msg-color: #2C3E50;
+        --right-msg-color: white;
+      }
+      
+      html {
+        box-sizing: border-box;
+      }
+      
+      *, *:before, *:after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+      }
+      
+      /* body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: var(--body-bg);
+        font-family: 'Roboto', sans-serif;
+      } */
+      
+      .msger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 867px;
+        height: 80vh;
+        border: var(--border);
+        border-radius: 10px;
+        background: var(--msger-bg);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+      }
+      
+      .msger-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        background: #34495E;
+        color: #ECF0F1;
+      }
+      
+      .msger-chat {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        background-color: #ECF0F1;
+        scroll-behavior: smooth;
+      }
+      
+      .msger-chat::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      .msger-chat::-webkit-scrollbar-thumb {
+        background-color: #95A5A6;
+        border-radius: 4px;
+      }
+      
+      .msg {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      
+      .msg-img {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+      }
+      
+      .msg-bubble {
+        max-width: 70%;
+        padding: 15px;
+        border-radius: 15px;
+        position: relative;
+      }
+      
+      .msg-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+      
+      .msg-info-name {
+        font-weight: bold;
+        color: #34495E;
+      }
+      
+      .msg-info-time {
+        font-size: 0.85em;
+        color: #7F8C8D;
+      }
+      
+      .left-msg .msg-bubble {
+        background: var(--left-msg-bg);
+        color: var(--left-msg-color);
+        border-bottom-left-radius: 0;
+      }
+      
+      .right-msg {
+        flex-direction: row-reverse;
+      }
+      
+      .right-msg .msg-bubble {
+        background: var(--right-msg-bg);
+        color: var(--right-msg-color);
+        border-bottom-right-radius: 0;
+      }
+      
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      
+      .msger-inputarea {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background: var(--input-bg);
+      }
+      
+      .msger-input {
+        flex: 1; /* Make input take available space */
+        padding: 10px;
+        border-radius: 20px;
+        border: none;
+        background: #2C3E50;
+        color: white;
+        font-size: 1.1em;
+        margin-right: 10px; /* Space between input and button */
+        outline: none;
+      }
+      
+      .msger-input:focus {
+        background-color: #2C3E50;
+      }
+      
+      .msger-send-btn {
+        padding: 12px 20px;
+        background: var(--send-btn-bg);
+        color: white;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      
+      .msger-send-btn:hover {
+        background: var(--send-btn-hover);
+      }
+      
+      @media screen and (max-width: 768px) {
+        .msger {
+          max-width: 100%;
+          height: 100vh;
+        }
+      
+        .msg-bubble {
+          max-width: 85%;
+        }
+      
+        .msger-header-title {
+          font-size: 1.2em;
+        }
+      }
+      
+      form {
+        display: block;
+        margin-top: 0em;
+        unicode-bidi: isolate;
+        margin-block-end: 1em;
+      }
+      </style>
+      
+      <script>
+        // Function to scroll to the bottom of the chat
+        function scrollToBottom() {
+          var chat = document.getElementById('chat');
+          chat.scrollTop = chat.scrollHeight;
+        }
+      
+        // Scroll to bottom on page load
+        window.onload = function() {
+          scrollToBottom();
+        };
+      </script>
+    {% include "footer.html" %}

@@ -1,0 +1,88 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br><br>
+    <center>
+        <h2>View_post and status</h2>
+        <!-- <table class="table table-hover">
+            <tr>
+                <th>Post_id</th>
+                <th>Sender_id</th>
+                <th>Receiever_id</th>
+                <th>Title</th>
+                <th>Organ_name</th>
+                <th>Description</th>
+                <th>Operation_date</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+
+            {% for i in data['vps'] %}
+            
+            <tr>
+                <td>{{i ['post_id']}}</td>
+                <td>{{i ['sender_id']}}</td>
+                <td>{{i ['receiver_id']}}</td>
+                <td>{{i ['title']}}</td>
+                <td>{{i ['organ_name']}}</td>
+                <td>{{i ['description']}}</td>
+                <td>{{i ['operation_date']}}</td>
+                <td>{{i ['date']}}</td>
+                <td>{{i ['status']}}</td>
+
+            </tr>
+            
+            {% endfor %}
+
+        </table> -->
+
+
+        <div class="container mt-4">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover shadow-lg">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>Post ID</th>
+                            <th>Sender ID</th>
+                            <th>Receiver ID</th>
+                            <th>Title</th>
+                            <th>Organ Name</th>
+                            <th>Description</th>
+                            <th>Operation Date</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Report</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        {% for i in data['vps'] %}
+                        <tr>
+                            <td>{{i['post_id']}}</td>
+                            <td>{{i['sender_id']}}</td>
+                            <td>{{i['receiver_id']}}</td>
+                            <td><strong>{{i['title']}}</strong></td>
+                            <td><span class="badge bg-info text-dark">{{i['organ_name']}}</span></td>
+                            <td>{{i['description']}}</td>
+                            <td>{{i['operation_date']}}</td>
+                            <td>{{i['date']}}</td>
+                            <td>
+                                {% if i['status'] == 'Pending' %}
+                                <span class="badge bg-warning text-dark">Pending</span>
+                                {% elif i['status'] == 'Approved' %}
+                                <span class="badge bg-success">Approved</span>
+                                {% elif i['status'] == 'Rejected' %}
+                                <span class="badge bg-danger">Rejected</span>
+                                {% else %}
+                                <span class="badge bg-secondary">Unknown</span>
+                                {% endif %}
+                            </td>
+                            <td><a href="{{i['report']}}">click here to view report</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </center>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    {% include 'footer.html' %}

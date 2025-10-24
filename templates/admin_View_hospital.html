@@ -1,0 +1,83 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br><br>
+    <center>
+        <h2>View Hospitals</h2>
+        <!-- <table class="table table-hover">
+            <tr>
+                <th>Hopsital_id</th>
+                <th>Login_id</th>
+                <th>Hospital_name</th>
+                <th>Place</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+
+            {% for i in data['hosp'] %}
+
+            <tr>
+                <td>{{i ['hopsital_id']}}</td>
+                <td>{{i ['login_id']}}</td>
+                <td>{{i ['hospital_name']}}</td>
+                <td>{{i ['place']}}</td>
+                <td>{{i ['email']}}</td>
+                <td>{{i ['phone']}}</td>
+                <td><a href="?action=accept&id={{i['login_id']}}">Accept</a></td>
+                <td><a href="?action=reject&id={{i['login_id']}}">Reject</a></td>
+            </tr>
+
+            {% endfor %}
+
+        </table> -->
+
+
+
+    
+<div class="container mt-4">
+    <div class="card p-4 shadow-lg">
+        <h2 class="text-center text-primary mb-3">Hospital List</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Hospital ID</th>
+                        <th>Login ID</th>
+                        <th>Hospital Name</th>
+                        <th>Place</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data['hosp'] %}
+                    <tr>
+                        <td>{{i['hopsital_id']}}</td>
+                        <td>{{i['login_id']}}</td>
+                        <td>{{i['hospital_name']}}</td>
+                        <td>{{i['place']}}</td>
+                        <td>{{i['email']}}</td>
+                        <td>{{i['phone']}}</td>
+                        <td>
+                            {% if i['usertype'] == 'hospital' %}
+                            <p class="btn btn-success btn-sm me-2">Approved</p>
+                            {% elif i['usertype']=='rejected' %}
+                            <p class="btn btn-danger btn-sm">Rejected</p>
+                            {% else %}
+                            <a href="?action=approve&id={{i['login_id']}}" class="btn btn-success btn-sm me-2">✔ Approve</a>
+                            <a href="?action=reject&id={{i['login_id']}}" class="btn btn-danger btn-sm">✖ Reject</a>
+                            {% endif %}
+                        </td>
+                    
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+        
+    </center>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    {% include 'footer.html' %}
